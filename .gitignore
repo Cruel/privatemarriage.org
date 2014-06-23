@@ -13,5 +13,11 @@
 .sass-cache/*
 .yardoc
 
+.project
+.metadata
+.tmp
+
 node_modules
 bower_components
+
+css
