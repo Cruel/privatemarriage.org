@@ -1,6 +1,12 @@
+@import "compass";
+
 @import "settings";
 @import "foundation";
 
+//$slick-font-path: 'slick/fonts/';
+//$slick-loader-path: 'slick/';
+@import "slick.scss";
+.slick-dots {margin-left:0;}
 // Or selectively include components
 // @import
 //   "foundation/components/accordion",
@@ -38,3 +44,21 @@
 //   "foundation/components/type",
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
+
+
+.header h1 {
+  font-family: 'Great Vibes', cursive;
+  background: url(../imgs/header.jpg) no-repeat 80% bottom;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+
+#carousel .slick-next {right: 25px;}
+#carousel .slick-prev {left: 25px;}
+#carousel div {
+  background: $body-bg - #222;
+}
+#carousel img {
+  height: 500px;
+  margin: 0 auto;
+}

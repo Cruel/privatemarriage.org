@@ -2,26 +2,16 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    sass: {
-      options: {
-        includePaths: [
-          'bower_components/foundation/scss',
-          'bower_components/foundation-icon-fonts'
-        ]
-      },
-      dist: {
-        options: {
-          outputStyle: 'compressed'
-        },
-        files: {
-          'css/app.css': 'scss/app.scss'
-        }        
-      }
-    },
-
     compass: {
       dist: {
         options: {
+          importPath: [
+	          'bower_components/foundation/scss',
+	          'bower_components/foundation-icon-fonts',
+	          'bower_components/slick.js/slick'
+          ],
+          config: 'config.rb',
+          outputStyle: 'compressed',
           sassDir: 'scss',
           cssDir: 'css',
           environment: 'production'
@@ -30,47 +20,82 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      grunt: { files: ['Gruntfile.js'] },
+      grunt: {
+      	files: ['Gruntfile.js'],
+      	tasks: ['build']
+      },
 
       sass: {
         files: 'scss/**/*.scss',
-        tasks: ['sass']
+        tasks: ['compass']
       },
       usemin: {
-        files: ['js/**/*.js', 'index_build.html'],
-        tasks: ['copy','useminPrepare','concat','uglify','usemin']
+        files: ['js/**/*.js', '!js/app.min.js', 'index.html'],
+        tasks: ['copy','useminPrepare','concat','uglify','usemin','jekyll:build']
       }
     },
 
     copy: {
-      index: {
-        src: 'index_build.html',
-        dest: 'index.html',
+      includes: {
+        src: '_includes/footer_build.html',
+        dest: '_includes/footer.html',
       },
+      slickfonts: {
+      	src: 'bower_components/slick.js/slick/fonts/*',
+      	dest: 'fonts/',
+      	flatten: true,
+      	expand: true,
+      },
+      slickimages: {
+        src: 'bower_components/slick.js/slick/ajax-loader.gif',
+        dest: 'imgs/',
+        flatten: true,
+      	expand: true,
+      }
     },
 
     useminPrepare: {
-      html: 'index_build.html',
+      html: '_includes/footer_build.html',
       options: {
         dest: '.'
       }
     },
     usemin: {
-      html: 'index.html',
-      options: {
-        assetsDirs: ['foo/bar', 'bar']
+      html: '_includes/footer.html'
+    },
+    
+    jekyll: {
+      build:{
+        options: {
+          serve: false
+        }
+      },
+      serve:{
+        options: {
+          serve: true
+        }
       }
+    },
+    
+    concurrent: {
+        jekyllwatch: {
+            tasks: ['jekyll:serve', 'watch'],
+            options: {
+                logConcurrentOutput: true
+            }
+        }
     }
   });
 
-  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-jekyll');
+  grunt.loadNpmTasks('grunt-concurrent');
 
-  grunt.registerTask('build', ['sass','copy','useminPrepare','concat','uglify','usemin']);
-  grunt.registerTask('default', ['build','watch']);
-}
+  grunt.registerTask('build', ['compass','copy','useminPrepare','concat','uglify','usemin','jekyll:build']);
+  grunt.registerTask('default', ['build','concurrent:jekyllwatch']);
+};

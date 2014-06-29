@@ -1,0 +1,55 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Private Marriage</title>
+    <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+    <!--link rel="stylesheet" type="text/css" href="bower_components/slick.js/slick/slick.css"/-->
+    <link rel="stylesheet" href="css/app.css" />
+    <script src="bower_components/modernizr/modernizr.js"></script>
+  </head>
+  <body>
+  	
+  	<div class="row header">
+      <div class="large-12 columns">
+        <h1 class="text-center">Private Marriage</h1>
+      </div>
+    </div>
+    
+    <div class="contain-to-grid">
+    <nav class="top-bar" data-topbar>
+	  <ul class="title-area">
+	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	  </ul>
+	
+	  <section class="top-bar-section">
+	    <!-- Right Nav Section -->
+	    <ul class="right">
+          <li class="has-dropdown">
+	        <a href="#">Resources</a>
+	        <ul class="dropdown">
+	          <li><a href="#">Articles</a></li>
+	          <li><a href="#">Skepticism</a></li>
+	        </ul>
+	      </li>
+	      <li class="has-dropdown {% if page.url == '/faqs.html' %}active{% endif %}">
+	        <a href="/faqs.html">FAQs</a>
+	        <ul class="dropdown">
+	          <li><a href="/faqs.html#What">What is private marriage?</a></li>
+	        </ul>
+	      </li>
+	      <li class="has-form">
+			  <a href="http://foundation.zurb.com/docs" class="button">Get Involved</a>
+			</li>
+	    </ul>
+	
+	    <!-- Left Nav Section -->
+	    <ul class="left">
+	      <li {% if page.url == '/index.html' %}class="active"{% endif %}><a href="/">Introduction</a></li>
+	    </ul>
+	  </section>
+	</nav>
+	</div>
+  	
