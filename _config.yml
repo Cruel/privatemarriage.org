@@ -17,11 +17,15 @@ auto: true
 server: true
 permalink: pretty
 
-gems: ['jekyll-lunr-js-search']
+gems: ['jekyll-lunr-js-search','jekyll-sitemap']
 
 exclude:
 - Gruntfile.js
 - package.json
+- bower.json
+- config.rb
+- node_modules
+- bower_components
 
 navigation:
 - text: Introduction
