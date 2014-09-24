@@ -1,16 +1,30 @@
-name : my site
+name : Private Marriage
 brand : my site
 description : description of my site
 keyword:  
 url : http://privatemarriage.org
 author: Thomas Edvalson
+avatar: https://avatars2.githubusercontent.com/u/383999
+
+# Your disqus shortname, entering this will enable commenting on posts
+disqus: privatemarriage
+# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
+google_analytics:
 
 markdown: kramdown
 pygments: false
 auto: true
 server: true
+permalink: pretty
+
+gems: ['jekyll-lunr-js-search']
+
+exclude:
+- Gruntfile.js
+- package.json
+
 navigation:
-- text: Home
+- text: Introduction
   url: / 
 - text: Associate With Us
   url: /associate.html
